@@ -1,0 +1,44 @@
+html {
+    width: 99.2%;
+     font-family: 'Roboto', sans-serif;
+ }
+
+.navbar {
+    padding: 0px !important;
+}
+
+.color{
+    color: #ff0000;
+}
+h1{
+    color:#000000;
+}
+
+.row {
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.ots {
+    margin-top: 2rem;
+}
+.vniz {
+    margin-bottom: 1%;
+}
+
+.foto{
+    height: 90vh;
+    width: 220vh;
+}
+.zag{
+    text-align: center;
+}
+.card-cart{
+    width: 30rem;
+}
+.card-vyr{
+    padding-left:5rem
+}
+.abon{
+    text-align:center;
+}
