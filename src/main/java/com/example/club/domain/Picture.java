@@ -32,3 +32,5 @@ public class Picture {
         this.name = name;
     }
 }
+
+//Алё привет
