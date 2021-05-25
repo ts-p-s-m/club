@@ -1,7 +1,13 @@
 package com.example.club;
 
+import com.example.club.domain.MartialArt;
 import com.example.club.domain.Picture;
 import com.example.club.domain.Request;
+import com.example.club.domain.Trainer;
+import com.example.club.repository.MartialArtRepo;
+import com.example.club.repository.PictureRepo;
+import com.example.club.repository.RequestRepo;
+import com.example.club.repository.TrainerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,25 +23,27 @@ public class GreetingController {
     private RequestRepo requestRepo;
 
     @Autowired
+    private TrainerRepo trainerRepo;
+
+    @Autowired
+    private MartialArtRepo martialArtRepo;
+
+    @Autowired
     private PictureRepo pictureRepo;
 
     @GetMapping("/")
     public String getGreetingPage(
             Model model
     ) {
-        List<Picture> pictures = pictureRepo.findAll();
+        List<MartialArt> martialArts = martialArtRepo.findAll();
 
-        model.addAttribute("picture1", getPictureById(pictures, 1L).getName());
-        model.addAttribute("picture2", getPictureById(pictures, 2L).getName());
-        model.addAttribute("picture3", getPictureById(pictures, 3L).getName());
-        model.addAttribute("picture4", getPictureById(pictures, 4L).getName());
-        model.addAttribute("picture5", getPictureById(pictures, 5L).getName());
-        model.addAttribute("picture6", getPictureById(pictures, 6L).getName());
-        model.addAttribute("picture7", getPictureById(pictures, 7L).getName());
-        model.addAttribute("picture8", getPictureById(pictures, 8L).getName());
-        model.addAttribute("picture9", getPictureById(pictures, 9L).getName());
-        model.addAttribute("picture10", getPictureById(pictures, 10L).getName());
-        model.addAttribute("picture11", getPictureById(pictures, 11L).getName());
+        List<Trainer> trainers = getTrainers();
+
+        model.addAttribute("trainers", trainers);
+
+        model.addAttribute("martialArts", martialArts);
+
+        model.addAttribute("detiPicture", getPictureById(1L));
         return "main";
     }
 
@@ -56,11 +64,15 @@ public class GreetingController {
         return "redirect:/"; //Вызываем get-запрос основной страницы по адресу "/"
     }
 
-    private Picture getPictureById(List<Picture> pictures, Long id) {
-        for (Picture pic: pictures) {
-            if (pic.getId().equals(id))
-                return pic;
-        }
-        return null;
+    private Picture getPictureById(Long id) {
+        return pictureRepo.getOne(id);
+    }
+
+    private List<Trainer> getTrainers() {
+        return trainerRepo.findAll();
+    }
+
+    private List<MartialArt> getMartialArts() {
+        return martialArtRepo.findAll();
     }
 }

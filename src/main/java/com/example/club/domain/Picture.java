@@ -1,9 +1,6 @@
 package com.example.club.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Picture {
@@ -12,6 +9,12 @@ public class Picture {
     private Long id;
 
     private String name;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Trainer trainer;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private MartialArt martialArt;
 
     public Picture() {
     }
@@ -31,6 +34,20 @@ public class Picture {
     public void setName(String name) {
         this.name = name;
     }
-}
 
-//Алё привет
+    public Trainer getTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
+
+    public MartialArt getMartialArt() {
+        return martialArt;
+    }
+
+    public void setMartialArt(MartialArt martialArt) {
+        this.martialArt = martialArt;
+    }
+}

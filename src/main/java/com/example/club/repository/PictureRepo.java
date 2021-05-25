@@ -1,4 +1,4 @@
-package com.example.club;
+package com.example.club.repository;
 
 import com.example.club.domain.Picture;
 import org.springframework.data.jpa.repository.JpaRepository;
